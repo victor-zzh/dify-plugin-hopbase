@@ -1,0 +1,36 @@
+version: 0.0.1
+type: plugin
+author: hopbase
+name: hopbase
+label:
+  en_US: HopBase
+description:
+  en_US: Use chat models from DeepSeek, Doubao Seed, Gemini, GPT, Grok, Kimi, GLM and more in Dify through the HopBase AI gateway's OpenAI-compatible API, with one API key.
+icon: icon.svg
+icon_dark: icon-dark.svg
+repo: https://github.com/victor-zzh/dify-plugin-hopbase
+privacy: PRIVACY.md
+created_at: 2026-10-31T00:00:00Z
+resource:
+  memory: 268435456
+  permission:
+    model:
+      enabled: false
+plugins:
+  models:
+    - provider/hopbase.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: 1.0.0
+network:
+  domains:
+    - api.hop-base.com
+tags:
+  - utilities

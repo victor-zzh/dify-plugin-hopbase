@@ -1,0 +1,111 @@
+provider: hopbase
+label:
+  en_US: HopBase
+description:
+  en_US: Chat models from DeepSeek, Doubao Seed, Gemini, GPT, Grok, Kimi, GLM and more through the HopBase AI gateway's OpenAI-compatible API.
+icon_small:
+  en_US: icon.svg
+icon_large:
+  en_US: icon.svg
+background: "#FFF7ED"
+help:
+  title:
+    en_US: Get your API key from HopBase
+  url:
+    en_US: https://api.hop-base.com/login
+supported_model_types:
+  - llm
+configurate_methods:
+  - predefined-model
+  - customizable-model
+provider_credential_schema:
+  credential_form_schemas:
+    - variable: api_key
+      label:
+        en_US: API Key
+      type: secret-input
+      required: true
+      placeholder:
+        en_US: Your HopBase API key
+    - variable: endpoint_url
+      label:
+        en_US: API Base URL
+      type: text-input
+      required: false
+      default: https://api.hop-base.com/v1
+      placeholder:
+        en_US: https://api.hop-base.com/v1
+model_credential_schema:
+  model:
+    label:
+      en_US: Model ID
+    placeholder:
+      en_US: A model ID returned by GET /v1/models for your key, e.g. deepseek-v4.1-flash
+  credential_form_schemas:
+    - variable: api_key
+      label:
+        en_US: API Key
+      type: secret-input
+      required: true
+      placeholder:
+        en_US: Your HopBase API key
+    - variable: endpoint_url
+      label:
+        en_US: API Base URL
+      type: text-input
+      required: false
+      default: https://api.hop-base.com/v1
+      placeholder:
+        en_US: https://api.hop-base.com/v1
+    - variable: context_size
+      label:
+        en_US: Context size
+      type: text-input
+      required: true
+      default: "128000"
+      placeholder:
+        en_US: Context window of the model in tokens
+    - variable: max_tokens_to_sample
+      label:
+        en_US: Upper bound for max tokens
+      type: text-input
+      required: false
+      default: "8192"
+      placeholder:
+        en_US: Largest value allowed for the Max Tokens parameter
+    - variable: function_calling_type
+      label:
+        en_US: Tool calling
+      type: select
+      required: false
+      default: tool_call
+      options:
+        - value: tool_call
+          label:
+            en_US: Supported
+        - value: no_call
+          label:
+            en_US: Not supported
+    - variable: vision_support
+      label:
+        en_US: Vision (image input)
+      type: select
+      required: false
+      default: not_support
+      options:
+        - value: support
+          label:
+            en_US: Supported
+        - value: not_support
+          label:
+            en_US: Not supported
+models:
+  llm:
+    position: models/llm/_position.yaml
+    predefined:
+      - models/llm/*.yaml
+extra:
+  python:
+    provider_source: provider/hopbase.py
+    model_sources:
+      - models/llm/llm.py
